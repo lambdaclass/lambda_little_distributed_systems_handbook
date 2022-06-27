@@ -1,4 +1,5 @@
 # Lambda little distributed systems handbook
+This a work in progress. Many things are wrong, we are correcting them.
 
 ## Section A.1
 ### A.1.1 - What is Mathematics? And Computing?
