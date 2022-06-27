@@ -125,7 +125,7 @@ A blockchain achieves consistency when forks are avoided. This property is refer
 A blockchain is available if transactions submitted by clients are served and eventually committed.
 For Partition Tolerance when a network partition occurs, authorities are divided into various groups in such a way that nodes in different groups cannot communicate each other.
 
-### C.3 - Did Bitcoin solve BGP? (ES UN TOQUE CLICKBAIT)
+### C.3 - Did Bitcoin solve BGP?
 
 With regard to money, Bitcoin needs to handle ownership and avoid double-spending (UTXO!) as a monetary system. Bitcoin employs a blockchain, this public distributed ledger, that saves the history of all transactions to accomplish this in a trustless way. The blockchain for Bitcoin, in the Byzantine generals analogy, is the decision that all parties must agree on.
 
