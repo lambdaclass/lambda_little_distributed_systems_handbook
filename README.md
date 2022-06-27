@@ -1,4 +1,4 @@
-# lambda_little_distributed_systems_handbook
+# Lambda little distributed systems handbook
 
 ## Section A.1
 ### A.1.1 - What is Mathematics? And Computing?
