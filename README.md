@@ -31,6 +31,43 @@ Many people may have a mental image of computing such as _C_, _Javascript_, _Pyt
 
 Curry-Howard correspondence (the [cs3110](https://cs3110.github.io/textbook/chapters/adv/curry-howard.html) course site is a great place to learn more about it) is a correspondence proven which closes the gap between the world of computation and mathematics. It's a bit too much for the purpose of this book, but in short, it shows that computation is nothing but receiving proofs and simplifying them (and things such as function definitions also correspond to prepositions and proofs).
 ### A.1.2 - What is a distributed system?
+For computer systems there are two main tasks that needs to be resolved:
+executing stuff, and storing some of them. As time goes on, these problems grow
+in complexity so a single computer needs more resources to keep on functioning
+well and that means spending more money. 
+
+The first idea was to improve the system CPU increasing the computing power and
+trying to keep working with the demand at that specific time, but there's a
+point in time when it's no longer profitable because the cost is way ahead of
+the benefit. So, if improving a single CPU doesn't seem to work anymore, the
+first thought was "Hey, let's cram a second core in the chip, increasing
+computation power? What could go wrong?". At first this was the best idea given
+the context but again, this solution arrives kinda at the same place as the
+previous one, there's a certain moment when the idea of adding more and more
+CPUs is no longer profitable. Also, think about the technical challenges that
+come with these approaches. You can't just simply cram a second core, you need
+to develop specific electronics for it. The research time that is needed to
+actually know how to keep scaling in this way could also be too big, leading to
+greater costs.
+
+Back then upgrading hardware was a good strategy at first, but as problem
+size increases there is always a point when the solution is no longer viable
+because of hardware limitations or the solution becoming cost-prohibitive.
+Does this mean that someone with infinite money and infinite resources could
+continue searching for this kind of scaling? Well, yes! Sadly most of the
+people don't have infinite resources so in this scenario we can introduce
+**distributed systems** as a new solution.
+
+We can think a distributed system as a union of multiple computers working
+together that from outside are seen as a single one. The idea is for the
+system to work the same way for an external user, whether it is one or more
+computers doing everything. This is a really good way to increase the
+performance of the whole system because many computers are working together
+to do the needed storage and computations. In the ideal case a new computer
+would increase the performance linearly allowing us to know how to exactly
+scale the system to reach the desire computing power. Nothing could be
+further than the truth.
+
 ### A.1.3 - Distributed System's problems
 ### A.1.4 - FLP Impossibility
 The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the possibility of non determination, even with only one faulty process.
