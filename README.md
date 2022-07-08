@@ -1,16 +1,16 @@
 # Lambda little distributed systems handbook
 This a work in progress. Many things are wrong, we are correcting them.
-
+    
 ## Section A.1
 ### A.1.1 - What is Mathematics? And Computing?
 ### A.1.2 - What is a distributed system?
 ### A.1.3 - Distributed System's problems
 ### A.1.4 - FLP Impossibility
-The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the posibility of nondetermination, even with only one faulty process.
+The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the possibility of non determination, even with only one faulty process.
 Real systems are subjects to a number of possible faults, such as process crashes, network partitioning, and lost, distorted, or duplicated messages. One can even consider more Byzantine types of failures.
-No completely asynchronous consensus protocol can tolerate even a single unannounced process death. This important problem has no robust solution without further assumptions about the computing environment or still greater restrictions on the kind of failuers to be tolerated!
+No completely asynchronous consensus protocol can tolerate even a single unannounced process death. This important problem has no robust solution without further assumptions about the computing environment or still greater restrictions on the kind of failures to be tolerated!
 
-In a nutshell, the FLP imposibility states we can’t have safety, liveness, full asynchrony, and fault tolerance all at the same time.
+In a nutshell, the FLP impossibility states we can’t have safety, liveness, full asynchrony, and fault tolerance all at the same time.
 
 ### A.1.5 - CAP theorem
 ### A.1.6 - Recap
@@ -19,9 +19,9 @@ In a nutshell, the FLP imposibility states we can’t have safety, liveness, ful
 ### A.2.1 - Gossip Protocols / Distribution
 Now that we introduce the notion of distributed system, we need to understand how the different participants of the system communicate between them. They'll need to send messages and status updates to keep all the other nodes updated and aware of the latest state of the network.
 
-Imagine we have a number of nodes that are members of a network or system. One node wants to pass a message or a request to all the other nodes in the network, well the node would have to go node by node communicating the message and here we encounter the first communication problem. Think of a network with 1000 nodes, if all of them at some point want to deliver a message to all the rest, they have to know every other participant node and the delay between the first message and the last one it would be huge, leading to inconsistensies in the state of the network and latency. On the other hand we expect to have unexpected disconnections from some nodes but we want the information to keep being distributed and not to stop for some node failure.
+Imagine we have a number of nodes that are members of a network or system. One node wants to pass a message or a request to all the other nodes in the network, well the node would have to go node by node communicating the message and here we encounter the first communication problem. Think of a network with 1000 nodes, if all of them at some point want to deliver a message to all the rest, they have to know every other participant node and the delay between the first message and the last one it would be huge, leading to inconsistencies in the state of the network and latency. On the other hand we expect to have unexpected disconnections from some nodes but we want the information to keep being distributed and not to stop for some node failure.
 
-Gossip protocols try to solve all these problems and make a better and faster communication between nodes. They are basically broadcast protocols between all the peers. The idea behind the gossip protocols is based on the fact ,like in epidemic theory, that starting with a single message the time that it woukd take to give the message to all the population is proportional to the log of the population size, or the number of nodes in the network in this case. There are numerous variants of the Gossip protocol that can be applied to different scenarios depending on the needs.
+Gossip protocols try to solve all these problems and make a better and faster communication between nodes. They are basically broadcast protocols between all the peers. The idea behind the gossip protocols is based on the fact ,like in epidemic theory, that starting with a single message the time that it would take to give the message to all the population is proportional to the log of the population size, or the number of nodes in the network in this case. There are numerous variants of the Gossip protocol that can be applied to different scenarios depending on the needs.
 
 All the gossip protocols follows mostly the same steps, where a node choose $n$ random nodes and deliver the message. Then every node do the same until every node received the message. For this reason the algorithm is not deterministic and there is no secure way to know if all the nodes actually received the message correctly.
 
@@ -31,7 +31,7 @@ When we use the term consistency we refer to have a consistent behaviour.
 In distributed systems is expected for every node to has the same info about specific data at a given point in time independent of whichever client has updated that data. If a request is made to a node, we want to get the same response. From the outside it should be like there is only one node doing all the work and giving always the last updated data (or an error). 
 
 There is two types of consistency models that depends on what model we prefer of the mentioned in the CAP theorem section.
-The first one is known as **strong consistency**. It ensures that all the nodes have the latest value of data at the very same time, to achieve this the nodes may be locked until the data is properly updated. This model favors consistency over availability and partition  tolerance.
+The first one is known as **strong consistency**. It ensures that all the nodes have the latest value of data at the same time, to achieve this the nodes may be locked until the data is properly updated. This model favors consistency over availability and partition  tolerance.
 The **Eventual consistency** is another consistency model that ensures that at some point in time the nodes will have the latest data but it may not be at the exact time as the change was requested. This favors data availability losing some consistency in the way.
 
 ### A.2.3 - What is Consensus?
@@ -39,7 +39,7 @@ Consensus in general can be defined as an agreement between some known agents on
 
 We can use this concept in the context of blockchain. We can think of the consensus as a procedure. The goal of this procedure is to reach an agreement on the actual state of the network that involves peers that communicate between them but are independent. 
 
-This task seems easy if we think on a centralized network where we have one trusted peer acting as a coordinator for the rest that communicates and receives state updates and then sends this new update to the rest of the nodes. Since blockchain is a decentralized network we have to think a little bit harder how we can reach consensus and the appropiate way for the network members to communicate.
+This task seems easy if we think on a centralized network where we have one trusted peer acting as a coordinator for the rest that communicates and receives state updates and then sends this new update to the rest of the nodes. Since blockchain is a decentralized network we have to think a little bit harder how we can reach consensus and the appropriate way for the network members to communicate.
 
 #### A.2.3.1 - Consensus Algorithm
 
@@ -47,7 +47,7 @@ Assume a collection of processes that can propose values. A consensus algorithm 
 - Only a value that has been proposed may be chosen.
 - Only a single value is chosen, and
 - A process never learns that a value has been chosen unless it actually has been.
-The goal of liveness is to ensure that some propsoed value i eventuallly choen and, if a vaue has been chosen, then a process can eventually learn the value.
+The goal of liveness is to ensure that some proposed value i eventually chosen and, if a value has been chosen, then a process can eventually learn the value.
 
 ### A.2.4 - The Byzantine Generals Problem
 The Byzantine Generals Problem refers to the difficulties that decentralized systems have to reach consensus or agreement in the decision-making of some specific action. The difficult part comes because the party doesn't expect a central member who knows all the participants and sends and receives all the communications between them.
@@ -80,7 +80,7 @@ After choosing a leader which plays the role of a distinguished proposer, the al
     b. If an acceptor receives an $accept$ request for a proposal numbered $n$, it accepts the proposal unless it has already responded to a $preprare$ request having a number greater than $n$.
 
 ### A.2.6 - Raft
-Raft is a consensus algorithm that is designed to be easy to understand. It's equivalent to Paxos in fault-tolerance and performance. The difference is that it's decomposed into relatively independent subproblems, and it cleanly addresses all major pieces needed for practical systems.
+Raft is a consensus algorithm that is designed to be easy to understand. It's equivalent to Paxos in fault-tolerance and performance. The difference is that it's decomposed into relatively independent sub problems, and it cleanly addresses all major pieces needed for practical systems.
 
 #### A.2.6.1 - High Level Overview
 A node can be in one of three states, the *Follower* state, the *Candidate* state or the *Leader* state.
@@ -91,7 +91,7 @@ All changes to the system now go through the leader. Each change is added as an 
 In Raft there are two timeout settings which control elections. First is the *election timeout*. The election timeout is the amount of time a follower waits until becoming a candidate. The election timeout is randomized to be between 150ms and 300ms. After the election timeout the follower becomes a candidate and starts a new *election term*, votes for itself and sends out *Request Vote* messages to other nodes. If the receiving node hasn't voted yet in this term then it votes for the candidate and the node resets its election timeout. Once a candidate has a majority of votes it becomes a leader. The leader begins sending out *Append Entries* messages to its followers. These messages are sent in intervals specified by the *heartbeat timeout*. Followers then respond to each *Append Entries* message. This election term will continue until a follower stops receiving heartbeats and becomes a candidate. Requiring a majority of votes guarantees that only one leader can be elected per term. If two nodes become candidates at the same time then a split vote can occur. Let's make an example of this situation. Suppose a four node network, two nodes both start an election for the same term and each reaches a single follower node before the other. Now each candidate has 2 votes and can receive no more for this term. The nodes will wait for a new election and try again until one node receives a majority of votes and becomes leader.
 
 #### A.2.6.3 - Log Replication
-Once we have a leader elected we need to replicate all changes to our system to all nodes. This is done by using the same *Append Entries* message that wass used for heartbeats. Let's walk thought the process. First a client sends a change to the leader. The change is appended to the leader's log, then the change is sent to the followers on the next heartbeat. An entry is committed once a majority of followers acknowledge it and a response is sent to the client. Raft can even stay consistent in the face of network partitions. Let's make an example of this situation. Let's say we have five nodes, three in one partitions and two in another. Because of our partition we now have two leader in different terms. If we add a client that sends a request to the two-node partition the leader of that partition cannot replicate to a majority so its log entry stays uncommitted. Another client sends a request to the other partition. This will succeed because it can replicate to a majority. If the partition is healed, then the two-node network will roll back their uncommitted entries and match the new leader's log. Now the log is consistent across the cluster.
+Once we have a leader elected we need to replicate all changes to our system to all nodes. This is done by using the same *Append Entries* message that was used for heartbeats. Let's walk thought the process. First a client sends a change to the leader. The change is appended to the leader's log, then the change is sent to the followers on the next heartbeat. An entry is committed once a majority of followers acknowledge it and a response is sent to the client. Raft can even stay consistent in the face of network partitions. Let's make an example of this situation. Let's say we have five nodes, three in one partitions and two in another. Because of our partition we now have two leader in different terms. If we add a client that sends a request to the two-node partition the leader of that partition cannot replicate to a majority so its log entry stays uncommitted. Another client sends a request to the other partition. This will succeed because it can replicate to a majority. If the partition is healed, then the two-node network will roll back their uncommitted entries and match the new leader's log. Now the log is consistent across the cluster.
 
 ### A.2.7 - (This section may not be included in the future) Distributed Systems Specification (Tla+, temporal logic and more)
 ### A.2.8 - Replication Models, Master/Follower and sharding
@@ -99,8 +99,8 @@ Once we have a leader elected we need to replicate all changes to our system to 
 ### Section Recap
 
 ## Section B
-### B.1 - Problems within the current financtial system
-### B.2 - A Deglobalized world
+### B.1 - Problems within the current financial system
+### B.2 - A non globalized world
 ### Section Recap
 
 ## Section C
@@ -119,7 +119,7 @@ The Byzantine generals problem can be solved with the help of a blockchain. Basi
 
 Each individual participating on the blockchain with intentions of building it is like a new general. A blockchain creates a layer that can be trusted without needing to trust every other individual. This is accomplished by a network of nodes coming together to agree on the truth before it is recorded. If the general is insecure about a decision or think that a communication it's not trustworthy, the other generals can verify it using what they know to be true.
 
-To mantain the security and inmmutability of the data that lives in the blockchain, cryptography was required and its one of the main tools that blockchains use to keep everything safe.
+To maintain the security and immutability of the data that lives in the blockchain, cryptography was required and its one of the main tools that blockchains use to keep everything safe.
 
 In terms of the CAP theorem:
 A blockchain achieves consistency when forks are avoided. This property is referred as **consensus finality** that we are gonna talk about later.
@@ -134,7 +134,7 @@ If all the nodes in the Bitcoin network could agree on which transactions happen
 
 Bitcoin was the first real solution to the making of decentralized currency using blockchain technology and solving the Byzantine generals problem. The world "solving" here is important, Bitcoin actually solves the problems that we mentioned but to achieve that it uses some other incentives and mechanisms and not real consensus between the participants.
 
-Bitcoin avoids dealing with consensus to see which block is the next and who is gonna propose it. It uses a mechanism called _Proof-of-Work_. Actors in Bitcoin called miners are designed to validate blocks and they compete with other miners to solve cryptographic puzzles to produce blocks and add them to the blockchain. By employing a proof-of-work mechanism, Bitcoin overcame the Byzantine generals problem because it doesn't need consensus at all. To add information to the blockchain (blocks) a network member must demonstrate that they put a lot of effort into making the block. This work comes at a high cost to the creator, incentivizing them to share correct information, even making the generation of wrong information unprofitable.
+Bitcoin avoids dealing with consensus to see which block is the next and who is gonna propose it. It uses a mechanism called _Proof-of-Work_. Actors in Bitcoin called miners are designed to validate blocks and they compete with other miners to solve cryptographic puzzles to produce blocks and add them to the blockchain. By employing a proof-of-work mechanism, Bitcoin overcame the Byzantine generals problem because it doesn't need consensus at all. To add information to the blockchain (blocks) a network member must demonstrate that they put a lot of effort into making the block. This work comes at a high cost to the creator, this incentivize them to share correct information, even making the generation of wrong information unprofitable.
 
 Thus this mechanism seems great trying to mitigate the byzantine faults, it carries other problems that we have to care about now. The first one is that is highly inefficient in terms of energetic resources. The mechanism itself incentivize the participants to spend money on resources to maximize the "power" and maximize the probability to be the one who solves the next cryptographic puzzle. 
 
@@ -158,7 +158,7 @@ Proof-of-Authority comes as another alternative after proof-of-work and proof-of
 
 This also carries another discussion and it's the level of decentralization of a blockchain that uses proof-of-authority. We've been talking about the byzantine failures and the intentions of these mechanisms to mitigate those problems maintaining a decentralized and trustless blockchain. With mechanisms like this one the permissioned blockchains entered the game.
 
-Proof-of-work doesn't need any pre-approval of miners because it supposes that everyone starts with the same opportunities to create and add the following block to the blockchain, obviously we know that it's not true but, for Bitcoin, there is no necessity to have a set of allowed participants so the incentive to go and try to be the one who solves the puzzle is bigger. In Proof-of-authority entering this validator set can be very hard so it could be the first barrier for newcomers to the network.
+Proof-of-work doesn't need any pre-approval of miners because it supposes that everyone starts with the same opportunities to create and add the following block to the blockchain, we know that it's not true but, for Bitcoin, there is no necessity to have a set of allowed participants so the incentive to go and try to be the one who solves the puzzle is bigger. In Proof-of-authority entering this validator set can be hard so it could be the first barrier for newcomers to the network.
 
 On the other hand the transactions per second that can be executed with proof-of-authority is much bigger and it needs less computational resources to do it.
 
@@ -169,14 +169,15 @@ On the other hand the transactions per second that can be executed with proof-of
 
 # SOURCES
 
-- Introduction
-	- [What is consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-consensus)
+- introduction
+    - [A history of Computation, Logic and Algebra](https://pron.github.io/posts/computation-logic-algebra-pt3)
+    - [What is consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-consensus)
 	- [What is a consensus mechanism](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-a-consensus-mechanism)
 	- Why is important for blockchains
 	- Algorithms vs node permission mechanisms
 	- Examples
 
-- Preliminars on Distributed Systems
+- Preliminary on Distributed Systems
 	- [The Byzantine Generals Problem](https://dl.acm.org/doi/pdf/10.1145/357172.357176)
     - [Epidemic Algorithms for Replicated Database Maintenance](http://bitsavers.trailing-edge.com/pdf/xerox/parc/techReports/CSL-89-1_Epidemic_Algorithms_for_Replicated_Database_Maintenance.pdf)
 	- [What it means to be Byzantine Fault Tolerance (BFT)](https://arxiv.org/pdf/1803.05069.pdf) (HotStuff introduction)
@@ -186,6 +187,9 @@ On the other hand the transactions per second that can be executed with proof-of
 
 - Proof of Stake
 	- [What is Proof of Stake?](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/#what-is-pos)
+
+- Formal Specifications / TLA+
+    - [TLA+ in Practice and Theory](https://pron.github.io/posts/tlaplus_part1)
 
 - Algorithms
 	- [State Machine Replication approach](https://www.cs.cornell.edu/fbs/publications/SMSurvey.pdf)
