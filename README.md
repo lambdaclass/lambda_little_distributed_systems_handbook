@@ -3,6 +3,33 @@ This a work in progress. Many things are wrong, we are correcting them.
     
 ## Section A.1
 ### A.1.1 - What is Mathematics? And Computing?
+From the shape of trees to the way ants cooperate and how stars position themselves in the sky, the world is full of patterns. Luckily we've evolved over thousands of years recognizing them and surely we got better at it.
+Planes, telecommunication networks, bridges and almost everything in the present world wouldn't exist if we hadn't been able to understand patterns.
+However, in order to harness their power we need to be able to talk about them. That's where **mathematics** come. We can think of maths as the language we use to describe patterns we perceive in the world. But how do we use…it? 
+
+We can simplify the idea of maths as specifying which things are the same (equivalent) and then look at what we can do with that. Of course the procedure that makes the wheel spin is the **mathematical proof**, which is a formal way of proving a statement. For example:
+
+> (The statement says that if a set of elements has a zero/null element, then it is unique)
+> **Prove**: If $x, y, z \in X$
+> 1. $0 \in X$ is an element such that $0 + x = x$  $\forall x \in X$ 
+> 2. $x + y = y + x$ 
+> 
+> 3. then if $\exists 0' \in X$ such that $0'+x = 0$ $\forall x \in X$ it follows that $0 = 0'$
+>
+> **Proof**:
+> 1. let $0$ and $0'$ be the ones from point 1 and 3 respectively.
+> 2. we have that $0 + 0' = 0$ because of 1.
+> 3. we also know that $0 + 0' = 0' + 0$ because of 2.
+> 4. now $0' + 0 = 0'$ because of 3.
+> 5. putting everything together, $$0 =_{(1.)} = 0 + 0' =_{(3.)} 0' + 0 =_{(4.)} 0'$$
+
+Maths have been around for a long time. On the other hand, Computing, a branch of Mathematics has been around us for a shorter period.
+
+![](https://i.imgur.com/N2tjijD.jpg)
+
+Many people may have a mental image of computing such as _C_, _Javascript_, _Python_, _OCaml_ or maybe even _Erlang_, and some may think of _Rust_. That's incorrect. They are programming languages, at most. "Well sure, I didn't mean the languages but the machine running the code written in those languages". You have a point there, but we'd like to present a quite different definition.
+
+Curry-Howard correspondence (the [cs3110](https://cs3110.github.io/textbook/chapters/adv/curry-howard.html) course site is a great place to learn more about it) is a correspondence proven which closes the gap between the world of computation and mathematics. It's a bit too much for the purpose of this book, but in short, it shows that computation is nothing but receiving proofs and simplifying them (and things such as function definitions also correspond to prepositions and proofs).
 ### A.1.2 - What is a distributed system?
 ### A.1.3 - Distributed System's problems
 ### A.1.4 - FLP Impossibility
