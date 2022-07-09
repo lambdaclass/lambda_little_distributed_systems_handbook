@@ -235,6 +235,7 @@ On the other hand the transactions per second that can be executed with proof-of
 
 - introduction
     - [A history of Computation, Logic and Algebra](https://pron.github.io/posts/computation-logic-algebra-pt3)
+    - [The Curry-Howard Correspondence](https://cs3110.github.io/textbook/chapters/adv/curry-howard.html)
     - [What is consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-consensus)
 	- [What is a consensus mechanism](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-a-consensus-mechanism)
 	- Why is important for blockchains
@@ -243,6 +244,7 @@ On the other hand the transactions per second that can be executed with proof-of
 
 - Preliminary on Distributed Systems
 	- [The Byzantine Generals Problem](https://dl.acm.org/doi/pdf/10.1145/357172.357176)
+    - [Distributed Systems for fun and profit](http://book.mixu.net/distsys/single-page.html)
     - [Epidemic Algorithms for Replicated Database Maintenance](http://bitsavers.trailing-edge.com/pdf/xerox/parc/techReports/CSL-89-1_Epidemic_Algorithms_for_Replicated_Database_Maintenance.pdf)
 	- [What it means to be Byzantine Fault Tolerance (BFT)](https://arxiv.org/pdf/1803.05069.pdf) (HotStuff introduction)
 	- Safety and liveness
