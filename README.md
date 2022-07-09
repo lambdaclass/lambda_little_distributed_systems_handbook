@@ -3,7 +3,71 @@ This a work in progress. Many things are wrong, we are correcting them.
     
 ## Section A.1
 ### A.1.1 - What is Mathematics? And Computing?
+From the shape of trees to the way ants cooperate and how stars position themselves in the sky, the world is full of patterns. Luckily we've evolved over thousands of years recognizing them and surely we got better at it.
+Planes, telecommunication networks, bridges and almost everything in the present world wouldn't exist if we hadn't been able to understand patterns.
+However, in order to harness their power we need to be able to talk about them. That's where **mathematics** come. We can think of maths as the language we use to describe patterns we perceive in the world. But how do we use…it? 
+
+We can simplify the idea of maths as specifying which things are the same (equivalent) and then look at what we can do with that. Of course the procedure that makes the wheel spin is the **mathematical proof**, which is a formal way of proving a statement. For example:
+
+> (The statement says that if a set of elements has a zero/null element, then it is unique)
+> **Prove**: If $x, y, z \in X$
+> 1. $0 \in X$ is an element such that $0 + x = x$  $\forall x \in X$ 
+> 2. $x + y = y + x$ 
+> 
+> 3. then if $\exists 0' \in X$ such that $0'+x = 0$ $\forall x \in X$ it follows that $0 = 0'$
+>
+> **Proof**:
+> 1. let $0$ and $0'$ be the ones from point 1 and 3 respectively.
+> 2. we have that $0 + 0' = 0$ because of 1.
+> 3. we also know that $0 + 0' = 0' + 0$ because of 2.
+> 4. now $0' + 0 = 0'$ because of 3.
+> 5. putting everything together, $$0 =_{(1.)} = 0 + 0' =_{(3.)} 0' + 0 =_{(4.)} 0'$$
+
+Maths have been around for a long time. On the other hand, Computing, a branch of Mathematics has been around us for a shorter period.
+
+![](https://i.imgur.com/N2tjijD.jpg)
+
+Many people may have a mental image of computing such as _C_, _Javascript_, _Python_, _OCaml_ or maybe even _Erlang_, and some may think of _Rust_. That's incorrect. They are programming languages, at most. "Well sure, I didn't mean the languages but the machine running the code written in those languages". You have a point there, but we'd like to present a quite different definition.
+
+Curry-Howard correspondence (the [cs3110](https://cs3110.github.io/textbook/chapters/adv/curry-howard.html) course site is a great place to learn more about it) is a correspondence proven which closes the gap between the world of computation and mathematics. It's a bit too much for the purpose of this book, but in short, it shows that computation is nothing but receiving proofs and simplifying them (and things such as function definitions also correspond to prepositions and proofs).
 ### A.1.2 - What is a distributed system?
+For computer systems there are two main tasks that needs to be resolved:
+executing stuff, and storing some of them. As time goes on, these problems grow
+in complexity so a single computer needs more resources to keep on functioning
+well and that means spending more money. 
+
+The first idea was to improve the system CPU increasing the computing power and
+trying to keep working with the demand at that specific time, but there's a
+point in time when it's no longer profitable because the cost is way ahead of
+the benefit. So, if improving a single CPU doesn't seem to work anymore, the
+first thought was "Hey, let's cram a second core in the chip, increasing
+computation power? What could go wrong?". At first this was the best idea given
+the context but again, this solution arrives kinda at the same place as the
+previous one, there's a certain moment when the idea of adding more and more
+CPUs is no longer profitable. Also, think about the technical challenges that
+come with these approaches. You can't just simply cram a second core, you need
+to develop specific electronics for it. The research time that is needed to
+actually know how to keep scaling in this way could also be too big, leading to
+greater costs.
+
+Back then upgrading hardware was a good strategy at first, but as problem
+size increases there is always a point when the solution is no longer viable
+because of hardware limitations or the solution becoming cost-prohibitive.
+Does this mean that someone with infinite money and infinite resources could
+continue searching for this kind of scaling? Well, yes! Sadly most of the
+people don't have infinite resources so in this scenario we can introduce
+**distributed systems** as a new solution.
+
+We can think a distributed system as a union of multiple computers working
+together that from outside are seen as a single one. The idea is for the
+system to work the same way for an external user, whether it is one or more
+computers doing everything. This is a really good way to increase the
+performance of the whole system because many computers are working together
+to do the needed storage and computations. In the ideal case a new computer
+would increase the performance linearly allowing us to know how to exactly
+scale the system to reach the desire computing power. Nothing could be
+further than the truth.
+
 ### A.1.3 - Distributed System's problems
 ### A.1.4 - FLP Impossibility
 The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the possibility of non determination, even with only one faulty process.
@@ -171,6 +235,7 @@ On the other hand the transactions per second that can be executed with proof-of
 
 - introduction
     - [A history of Computation, Logic and Algebra](https://pron.github.io/posts/computation-logic-algebra-pt3)
+    - [The Curry-Howard Correspondence](https://cs3110.github.io/textbook/chapters/adv/curry-howard.html)
     - [What is consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-consensus)
 	- [What is a consensus mechanism](https://ethereum.org/en/developers/docs/consensus-mechanisms/#what-is-a-consensus-mechanism)
 	- Why is important for blockchains
@@ -179,6 +244,7 @@ On the other hand the transactions per second that can be executed with proof-of
 
 - Preliminary on Distributed Systems
 	- [The Byzantine Generals Problem](https://dl.acm.org/doi/pdf/10.1145/357172.357176)
+    - [Distributed Systems for fun and profit](http://book.mixu.net/distsys/single-page.html)
     - [Epidemic Algorithms for Replicated Database Maintenance](http://bitsavers.trailing-edge.com/pdf/xerox/parc/techReports/CSL-89-1_Epidemic_Algorithms_for_Replicated_Database_Maintenance.pdf)
 	- [What it means to be Byzantine Fault Tolerance (BFT)](https://arxiv.org/pdf/1803.05069.pdf) (HotStuff introduction)
 	- Safety and liveness
