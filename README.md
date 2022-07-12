@@ -68,7 +68,56 @@ would increase the performance linearly allowing us to know how to exactly
 scale the system to reach the desire computing power. Nothing could be
 further than the truth.
 
-### A.1.3 - Distributed System's problems
+### A.1.3 - Distributed System's problems 
+
+With this new solution also comes new challenges that we need to attack. Now
+that there are multiple different computers trying to simulate the behaviour as
+if one computer is doing all the computations it's not like we can put the
+systems to work and expect them to do all the job correctly. We'll need
+specific coordination between computers, the data needs to be copied around
+and we expect to have less latency as possible for all the communication
+between the systems. From distributed systems, we expect a set of specific
+things that we want to achieve: **scalability**, **performance**, and
+**availability**.
+
+We started talking about how distributed systems allow us to process and do
+greater computations by putting many computers to work together, it makes sense
+that one thing that is desirable for our system is to have the ability to
+scale. The idea of a scalable system is to have the possibility to make it
+bigger without getting incrementally worse. But what is the thing that could be
+worse if the system scales? that things are the other two properties that we
+expect to have for our system, performance, and availability.
+
+It's difficult to measure performance only in one way, there are a lot of
+aspects to keep in mind to say that one system has a good performance. The one
+that is particularly important to analyze in a distributed system is the
+latency of the response. One easy way to think about latency is the time
+between something happened and the time that is visible to others or makes an
+impact on it.
+
+On the other hand, the availability is really attached to this concept of
+having many machines working together. For a single machine we have only two
+options, it works or it doesn't. This new approach gives us the possibility of
+having some machines down and others working so we want the system to keep
+working as it should even if not all the computers are working correctly. It's
+like taking a few unreliable components and building a reliable system with
+them. Often when we talk about a distributed system and availability we want to
+say that the system should be **fault-torelant** is a term that we'll explain
+better in the sections to come.
+
+Dealing with these properties is the actual problem of distributed systems. The
+constraints are basically two, the number of computers in the whole system and
+the distance between these computers. If we play with these constraints we'll
+basically see the tradeoffs between the above-mentioned properties. More
+computers lead to more possibility of failures because you are introducing more
+actors to the system. Also implies that the system will need better
+communication with all the computers leading to problems in performance and
+making scaling harder to achieve. Increase the distance between the computers
+and the latency will increase, leading to performance issues. All the analysis
+and studies on distributed systems go around these (and a couple more) ideas
+and we'll see how that analysis leads to new problems and new solutions for
+these aspects.
+
 ### A.1.4 - FLP Impossibility
 The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the possibility of non determination, even with only one faulty process.
 Real systems are subjects to a number of possible faults, such as process crashes, network partitioning, and lost, distorted, or duplicated messages. One can even consider more Byzantine types of failures.
