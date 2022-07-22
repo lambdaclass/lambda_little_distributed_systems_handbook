@@ -70,11 +70,45 @@ further than the truth.
 
 ### A.1.3 - Distributed System's problems
 ### A.1.4 - FLP Impossibility
-The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. [It was shown](https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf) that every protocol for this problem has the possibility of non determination, even with only one faulty process.
-Real systems are subjects to a number of possible faults, such as process crashes, network partitioning, and lost, distorted, or duplicated messages. One can even consider more Byzantine types of failures.
-No completely asynchronous consensus protocol can tolerate even a single unannounced process death. This important problem has no robust solution without further assumptions about the computing environment or still greater restrictions on the kind of failures to be tolerated!
 
-In a nutshell, the FLP impossibility states we can’t have safety, liveness, full asynchrony, and fault tolerance all at the same time.
+The upcoming two subsections discuss an important topic in distributed systems design by its implications in practice.
+
+We'll first take a brief tour into the **FLP impossibility theorem**.
+Its statement is about the limitations of solving the **distributed
+consensus** problem (don't worry, we'll come back to this later),
+which in short is not different than choosing where to have dinner
+with your friends. In other words, you have some participants that
+want to agree about something, everyone has to "vote" and the approval
+should be unanimous.
+
+Let's keep for a while with the analogy of choosing where to have
+dinner. You're hungry, so ideally you want to at some point settle
+everything up. We'll call this need for eventually making a decision
+**liveness**.
+
+You also want everyone to agree on the same value (you wouldn't want
+part of your group arriving to a different place), and obviously
+someone must've proposed that place (how could we choose it anyways?).
+We'll say that **Safety** refers to reaching an agreement on a value
+that was proposed by one of the nodes.
+
+Lastly, someone might get sick or fall asleep or just doesn't care
+about the messages arriving at their phone (maybe they lost it), and
+we aren't gonna cancel everything because of that. We'll call this
+**Fault Tolerance**
+
+Enough analogies! The FLP theorem states that you cannot have everything in life and it translates to:
+
+> You cannot achieve both safety and liveness while also achieving
+> fault-tolerance.
+
+What does this mean? You definitely have to be fault-tolerant in this
+case. We don't want no undefined behavior nonsense in our lives,
+right? So either safety or liveness will be traded off for the other.
+Examples of that are 2 Phase Commit and 3 Phase Commit algorithms. The
+first one favors safety and the latter favors liveness.
+
+TODO: Are we doomed? (The beauty of not giving a sh*t about theorems when we jump from theory to practise)
 
 ### A.1.5 - CAP theorem
 ### A.1.6 - Recap
